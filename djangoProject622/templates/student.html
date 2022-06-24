@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% extends 'Base.html' %}
+{% block child_block %}
+<div class="container" align="center">
+    <h3>List of Students</h3>
+{#<a class="nav-link" href="{% url 'add' %}">#}
+    <a href="add_stu/" class="btn btn-success">add new student</a>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Class</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        {% for student in students %}
+        <tr>
+            <td>{{student.id}}</td>
+            <td>{{student.student_Name}}</td>
+            <td>{{student.student_Class.class_Name}}</td>
+            <td><a href="delete_stu/{{student.id}}" onclick="return deletejob();" class="btn btn-success">delete</a> <a href="/update_stu/{{student.id}}" class="btn btn-success">update</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script type="text/javascript" language="JavaScript">
+                function deletejob()
+                {
+                     if(confirm("Are you confirm to delete?"))
+                     {
+                         return true;
+                     }else{
+                         return false;
+                     }
+                }
+    </script>
+
+
+    </br>
+    </br>
+    <h3>List of Classes</h3>
+    <a href="add_cls/" class="btn btn-success">add new class</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Class ID</th>
+                <th>Class Name</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        {% for class in classes %}
+        <tr>
+            <td>{{class.id}}</td>
+            <td>{{class.class_Name}}</td>
+            <td><a href="delete_cls/{{class.id}}" onclick="return deletejob();" class="btn btn-success">delete</a> <a href="/update_cls/{{class.id}}" class="btn btn-success">update</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+    </br>
+    </br>
+    <h3>List of Teachers</h3>
+    <a href="add_tea/" class="btn btn-success">add new teacher</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Teacher Name</th>
+                <th>Teacher Class</th>
+                <th>Edit</th>
+
+            </tr>
+        </thead>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{teacher.id}}</td>
+            <td>{{teacher.teacher_Name}}</td>
+            <td>
+                {% for class in teacher.teacher_Class.all %}
+                    {{class}}
+                {% endfor %}
+            </td>
+            <td><a href="delete_tea/{{teacher.id}}" onclick="return deletejob();" class="btn btn-success">delete</a> <a href="/update_tea/{{teacher.id}}" class="btn btn-success">update</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends 'Base.html' %}
+{% block child_block %}
+    <div class="container" align="center">
+        <h3>Update this teacher</h3>
+        <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Insert Class Record" class="btn btn-primary btn-lg">
+        </form>>
+    </div>
+{% endblock %}
